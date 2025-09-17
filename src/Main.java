@@ -1,30 +1,35 @@
-//TIP To <b>Run</b> code, press <shortcut actionId="Run"/> or
-// click the <icon src="AllIcons.Actions.Execute"/> icon in the gutter.
+import java.util.Scanner;
 public class Main {
     public static void main(String[] args) {
-    //Variable
-        int age = 32;
-        int year = 2025;
-        int quantity = 1;
+    //User Input
+       Scanner scanner = new Scanner(System.in);
+       System.out.print("Please enter your name: ");
+       String name = scanner.nextLine();
+//       System.out.print("Please enter your name: ");
+//       String name = scanner.next();
 
-        double price = 19.99;
-        double gpa = 3.5;
-        double temperature = -12.5;
+        System.out.print("Please enter your age: ");
+        int age = scanner.nextInt();
 
-        char grade = 'A';
-        char symbol = '!';
-        char currency = '$';
-
-        boolean isStudent = true;
-        boolean forSale = false;
-        boolean isOnline = true;
+        System.out.print("Please enter your gpa: ");
+        double gpa = scanner.nextDouble();
+        System.out.print("Are you a student(true/false): ");
+        boolean isStudent = scanner.nextBoolean();
 
 
-        String name = "Iyanu";
-        String pizza = "pizza";
-        String email = "phisher419@gmail.com";
-        String car = "Benz";
 
-        System.out.println(name);
+        System.out.println("Hello "+name);
+        System.out.println("You are "+age);
+        System.out.println("Your gpa is "+gpa);
+        System.out.println("Your gpa is "+gpa);
+        if(isStudent){
+            System.out.println("You are Student ");
+        }else{
+            System.out.println("You are not Student ");
+        }
+//        System.out.println("Student: "+isStudent);
+
+       scanner.close();
+
     }
 }
