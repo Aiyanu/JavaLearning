@@ -1,31 +1,21 @@
 import java.util.Scanner;
 public class Main {
     public static void main(String[] args) {
-    int x = 10;
-    int y= 3;
-    int z = x + y;
-    z=x-y;
-    z=x*y;
-    z=x/y;
-    z=x%y;
-    System.out.println(z);
+        Scanner sc = new Scanner(System.in);
+        char currency = '₦';
+        String item;
+        int quantity;
+        double totalPrice,price;
+        System.out.print("What item would you like to buy? ");
+        item = sc.nextLine();
+        System.out.print("What is the price for each? ");
+        price = sc.nextDouble();
+        System.out.print("How many would you like to buy? ");
+        quantity = sc.nextInt();
 
-
-    //Augmented Assignment Operators
-    x+=y;
-    x-=y;
-    System.out.println(x);
-
-    //Increment and Decrement Operator
-        x++;
-        x--;
-        System.out.println(x);
-
-        //order of presidency [P-E-M-D-A-S]
-
-        double result = 3+4*(7-5)/2.0;
-        System.out.println(result);
-
-
+        totalPrice = price * quantity;
+        System.out.println("You have bought "+quantity+" "+item+"/s");
+        System.out.printf("Your total is %c%.2f",currency,totalPrice);
+        sc.close();
     }
 }
