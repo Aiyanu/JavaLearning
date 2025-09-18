@@ -1,11 +1,11 @@
 import java.util.Scanner;
 public class Main {
     public static void main(String[] args) {
-        Scanner sc = new Scanner(System.in);
         char currency = '₦';
         String item;
         int quantity;
         double totalPrice,price;
+        Scanner sc = new Scanner(System.in);
         System.out.print("What item would you like to buy? ");
         item = sc.nextLine();
         System.out.print("What is the price for each? ");
