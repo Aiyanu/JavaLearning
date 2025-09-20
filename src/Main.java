@@ -1,19 +1,23 @@
-import java.util.Random;
+import java.util.Scanner;
 public class Main {
     public static void main(String[] args) {
-        //Random Class
-       Random rand = new Random();
+        //Compound Interest Calculator
+        Scanner sc = new Scanner(System.in);
 
-       int randInt1;
-       double randDouble;
-       boolean randBoolean;
+        double principal,rate,amount;
+        int timeCompounded,years;
 
-        randInt1 = rand.nextInt(1,7);
-        randDouble = rand.nextDouble();
-        randBoolean = rand.nextBoolean();
+        System.out.print("Enter the principal: ");
+        principal = sc.nextDouble();
+        System.out.print("Enter the rate (in %): ");
+        rate = sc.nextDouble()/100;
+        System.out.print("Enter the number of times compounded per year: ");
+        timeCompounded = sc.nextInt();
+        System.out.print("Enter number of years:");
+        years = sc.nextInt();
 
-        System.out.println(randInt1);
-        System.out.println(randDouble);
-        System.out.println(randBoolean);
+        amount = principal*Math.pow(1+(rate/timeCompounded),timeCompounded*years);
+        System.out.printf("The amount after %d is $%,.2f",years,amount);
+        sc.close();
     }
 }
