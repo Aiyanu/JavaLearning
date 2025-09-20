@@ -1,21 +1,26 @@
 import java.util.Scanner;
 public class Main {
     public static void main(String[] args) {
+       // if statements
         Scanner sc = new Scanner(System.in);
-        char currency = '₦';
-        String item;
-        int quantity;
-        double totalPrice,price;
-        System.out.print("What item would you like to buy? ");
-        item = sc.nextLine();
-        System.out.print("What is the price for each? ");
-        price = sc.nextDouble();
-        System.out.print("How many would you like to buy? ");
-        quantity = sc.nextInt();
+        System.out.print("Enter you name: ");
+        String name = sc.nextLine();
+        if (name.isEmpty()){
+            System.out.println("You didn't enter your name");
+        }else{
+            System.out.println("Hello, " + name);
+        }
+        System.out.print("Enter your age: ");
+        int age = sc.nextInt();
 
-        totalPrice = price * quantity;
-        System.out.println("You have bought "+quantity+" "+item+"/s");
-        System.out.printf("Your total is %c%.2f",currency,totalPrice);
+        if (age >= 18){
+            System.out.println("You are an adult!");
+        } else if (age < 0) {
+            System.out.println("You haven't been born yet");
+        } else{
+            System.out.println("You are a minor!");
+        }
+
         sc.close();
     }
 }
