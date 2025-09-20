@@ -1,31 +1,31 @@
 import java.util.Scanner;
 public class Main {
     public static void main(String[] args) {
-        //String Methods
+        //Weight Conversion Program
 
-        String name = "Iyanu Adesanya";
+        Scanner sc = new Scanner(System.in);
 
-        int length = name.length();
-        char letter = name.charAt(0);
-        int index = name.indexOf("a");
-        int lastIndex = name.lastIndexOf("a");
+        double weight,newWeight;
+        int choice;
 
-        name = name .toUpperCase();
-        name = name.toLowerCase();
-        name=name.trim();
-        name=name.replace("o","a");
+        System.out.println("Weight Conversion Program");
+        System.out.println("1: Convert lb(s) to kg(s)");
+        System.out.println("2: Convert kg(s) to lb(s)");
 
-        boolean isEmpty=name.isEmpty();
-        boolean contains=name.contains("a");
-        boolean isEqual = name.equals("name");
-        boolean isEqual2 = name.equalsIgnoreCase("");
+        System.out.print("Choice Option:");
+        choice = sc.nextInt();
 
-        String email = "aiyanu1.00@gmail.com";
-        String username = email.substring(0,email.indexOf("@"));
-        String domain = email.substring(email.indexOf("@")+1);
+        System.out.print("Enter weight ");
+        weight = sc.nextDouble();
 
-
-        System.out.println(username);
-        System.out.println(domain);
+        if (choice == 1){
+            newWeight = weight * 0.453592;
+            System.out.printf("The weight is %.2fkg(s) ", newWeight);
+        }else if (choice==2){
+            newWeight = weight / 0.453592;
+            System.out.printf("The weight is %.2flb(s) ", newWeight);
+        }else{
+            System.out.println("Invalid choice.");
+        }
     }
 }
