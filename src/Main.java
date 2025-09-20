@@ -1,23 +1,31 @@
 import java.util.Scanner;
 public class Main {
     public static void main(String[] args) {
-        //Compound Interest Calculator
-        Scanner sc = new Scanner(System.in);
+        //String Methods
 
-        double principal,rate,amount;
-        int timeCompounded,years;
+        String name = "Iyanu Adesanya";
 
-        System.out.print("Enter the principal: ");
-        principal = sc.nextDouble();
-        System.out.print("Enter the rate (in %): ");
-        rate = sc.nextDouble()/100;
-        System.out.print("Enter the number of times compounded per year: ");
-        timeCompounded = sc.nextInt();
-        System.out.print("Enter number of years:");
-        years = sc.nextInt();
+        int length = name.length();
+        char letter = name.charAt(0);
+        int index = name.indexOf("a");
+        int lastIndex = name.lastIndexOf("a");
 
-        amount = principal*Math.pow(1+(rate/timeCompounded),timeCompounded*years);
-        System.out.printf("The amount after %d is $%,.2f",years,amount);
-        sc.close();
+        name = name .toUpperCase();
+        name = name.toLowerCase();
+        name=name.trim();
+        name=name.replace("o","a");
+
+        boolean isEmpty=name.isEmpty();
+        boolean contains=name.contains("a");
+        boolean isEqual = name.equals("name");
+        boolean isEqual2 = name.equalsIgnoreCase("");
+
+        String email = "aiyanu1.00@gmail.com";
+        String username = email.substring(0,email.indexOf("@"));
+        String domain = email.substring(email.indexOf("@")+1);
+
+
+        System.out.println(username);
+        System.out.println(domain);
     }
 }
