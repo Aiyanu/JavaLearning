@@ -1,31 +1,25 @@
 import java.util.Scanner;
 public class Main {
     public static void main(String[] args) {
-        //Weight Conversion Program
+       //Temperature Converter
 
         Scanner sc = new Scanner(System.in);
 
-        double weight,newWeight;
-        int choice;
+        double temp;
+        String unit;
 
-        System.out.println("Weight Conversion Program");
-        System.out.println("1: Convert lb(s) to kg(s)");
-        System.out.println("2: Convert kg(s) to lb(s)");
+        System.out.print("Please enter the temperature: ");
+        temp = sc.nextDouble();
 
-        System.out.print("Choice Option:");
-        choice = sc.nextInt();
+        System.out.print("Convert to Celsius or Fahrenheit? (C or F): ");
+        unit = sc.next().toUpperCase();
 
-        System.out.print("Enter weight ");
-        weight = sc.nextDouble();
+        double newTemp = (unit.equals("C"))?(temp- (32 * 5) /9):((temp*5/9)+32);
 
-        if (choice == 1){
-            newWeight = weight * 0.453592;
-            System.out.printf("The weight is %.2fkg(s) ", newWeight);
-        }else if (choice==2){
-            newWeight = weight / 0.453592;
-            System.out.printf("The weight is %.2flb(s) ", newWeight);
-        }else{
-            System.out.println("Invalid choice.");
-        }
+        System.out.printf("%.1f°%s",newTemp,unit);
+
+//        System.out.println(temp);
+//        System.out.println(unit);
+        sc.close();
     }
 }
