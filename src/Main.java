@@ -1,32 +1,50 @@
-import java.io.BufferedReader;
+import javax.sound.sampled.*;
+import java.io.File;
 import java.io.FileNotFoundException;
-import java.io.FileReader;
 import java.io.IOException;
+import java.util.Scanner;
 
 public class Main {
     public static void main(String[] args) {
-        //How to read files using Java (3 popular options)
+        String filePath = "src\\Music.wav";
+        File file = new File(filePath);
+        try(Scanner sc = new Scanner(System.in);AudioInputStream audioInputStream = AudioSystem.getAudioInputStream(file);){
 
-        // BufferedReader + FileReader = Best for reading text files line-by-line
-        // RandomAccessFile = Best for reading specific portions of a large file
-        // FileInputStream = Best for binary files (e.g., images, audio files)
-        String filePath = "C:\\Users\\DELL\\OneDrive\\Desktop\\Testing.txt";
+            Clip clip = AudioSystem.getClip();
+            clip.open(audioInputStream);
 
+            String response="";
+            while(!response.equals("Q")){
+                System.out.println("P = Play");
+                System.out.println("S = Stop");
+                System.out.println("R = Reset");
+                System.out.println("Q = Quit");
+                System.out.print("Enter your choice: ");
 
+                response=sc.nextLine().toUpperCase();
 
-
-        try(BufferedReader br = new BufferedReader(new FileReader(filePath));){
-            String line;
-            while((line = br.readLine())!=null){
-                System.out.println(line);
+                switch(response){
+                    case "P"->clip.start();
+                    case "S"->clip.stop();
+                    case "R"->clip.setMicrosecondPosition(0);
+                    case "Q"->clip.close();
+                    default -> System.out.println("Invalid choice.");
+                }
             }
-//            System.out.println("The file exists");
         }
-        catch (FileNotFoundException e){
-            System.out.println("Could not locate file");
+        catch(FileNotFoundException e){
+            System.out.println("Could not locate audio file");
+        }
+        catch(UnsupportedAudioFileException e){
+            System.out.println("Audio file is not supported");
+        }
+        catch(LineUnavailableException e){
+            System.out.println("Unable to access audio resource");
         }
         catch (IOException e) {
-            System.out.println("Something went wrong");
+            System.out.println("Something went wrong");;
+        } finally {
+            System.out.println("Byeeee");
         }
     }
 }
