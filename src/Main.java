@@ -1,84 +1,28 @@
-import java.util.Scanner;
-import java.util.Random;
+import java.io.FileNotFoundException;
+import java.io.FileWriter;
+import java.io.IOException;
 
 public class Main {
     public static void main(String[] args) {
-       // Java Dice Roller Program
+        //How to write files using Java (4 popular options)
 
-        Scanner sc = new Scanner(System.in);
-        Random rand = new Random();
-        int numOfDice;
-        int total=0;
-
-        System.out.print("Enter the number of dice to roll: ");
-        numOfDice = sc.nextInt();
-
-        if(numOfDice >0){
-            for(int i=0;i< numOfDice;i++){
-                int roll = rand.nextInt(1,7);
-                System.out.println("You rolled: "+roll);
-                printDie(roll);
-                total+=roll;
-            }
-            System.out.println("Total: "+total);
-        }else {
-            System.out.println("# of dice must greater than 0");
+        // FileWriter = Good for small or medium-sized text files
+        // BufferedWriter = Better performance for large amounts of text
+        // PrintWriter = Best for structured data, like reports or logs
+        // FileOutputStream = Best for binary files (e.g., images, audio files)
+        String filePath = "./test.txt";
+        String textContent = """
+                I want to buy Shawarma
+                Please buy me Shawarma
+                """;
+        try(FileWriter fw = new FileWriter(filePath)){
+            fw.write(textContent);
+            System.out.println("File has been written");
+        } catch (FileNotFoundException e) {
+            System.out.println("Could not find file");
         }
-        sc.close();
-    }
-    static void printDie(int roll){
-        String dice1 = """
-                 -------
-                |       |
-                |   ●   |
-                |       |
-                 -------   
-                """;
-        String dice2 = """
-                 -------
-                | ●     |
-                |       |
-                |     ● |
-                 -------   
-                """;
-        String dice3 = """
-                 -------
-                | ●     |
-                |   ●   |
-                |     ● |
-                 -------   
-                """;
-        String dice4 = """
-                 -------
-                | ●   ● |
-                |       |
-                | ●   ● |
-                 -------   
-                """;
-        String dice5 = """
-                 -------
-                | ●   ● |
-                |   ●   |
-                | ●   ● |
-                 -------   
-                """;
-        String dice6 = """
-                 -------
-                | ● ● ● |
-                | ● ● ● |
-                | ● ● ● |
-                 -------   
-                """;
-
-        switch (roll) {
-            case 1-> System.out.print(dice1);
-            case 2-> System.out.print(dice2);
-            case 3-> System.out.print(dice3);
-            case 4-> System.out.print(dice4);
-            case 5-> System.out.print(dice5);
-            case 6-> System.out.print(dice6);
-            default ->  System.out.print("Invalid roll");
+        catch (IOException e){
+            System.out.println("Could not write to file");
         }
     }
-
 }
