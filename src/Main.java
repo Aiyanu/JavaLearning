@@ -2,28 +2,32 @@ import java.util.*;
 
 public class Main {
     public static void main(String[] args) {
-        //HashMap
+        //Enums
+        System.out.print("Enter a day of the week: ");
+        try(
+                Scanner sc = new Scanner(System.in);
 
-        HashMap<String,Double> map = new HashMap<>();
+                ){
+            String response = sc.nextLine().toUpperCase().trim();
+            Day day = Day.valueOf(response);
 
-        map.put("apple",0.5);
-        map.put("orange",1.0);
-        map.put("pear",2.0);
+            System.out.println(day);
 
-//        map.remove("apple");
-        if(map.containsKey("apple")){
-            System.out.println(map.get("apple"));
+            switch(day) {
+                case SUNDAY,SATURDAY-> System.out.println("It is a weekend");
+                case MONDAY,
+                     TUESDAY,
+                     WEDNESDAY,
+                     THURSDAY,
+                     FRIDAY-> System.out.println("It is a weekend");
+
+            }
         }
-        else{
-            System.out.println("Key not found");
+            catch(IllegalArgumentException e){
+                System.out.println("Day does not exist");
         }
-
-        System.out.println(map.containsValue(1.0));
-        System.out.println(map.size());
-        System.out.println(map);
-        for(String key:map.keySet()){
-            System.out.println(key+" : ₦"+map.get(key));
+        catch(Exception e){
+            System.out.println("Something went wrong");
         }
-
     }
 }
