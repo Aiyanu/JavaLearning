@@ -2,32 +2,28 @@ import java.util.*;
 
 public class Main {
     public static void main(String[] args) {
-        //Enums
-        System.out.print("Enter a day of the week: ");
-        try(
-                Scanner sc = new Scanner(System.in);
+        Scanner sc = new Scanner(System.in);
 
-                ){
-            String response = sc.nextLine().toUpperCase().trim();
-            Day day = Day.valueOf(response);
+        MyRunnable myRunnable = new MyRunnable();
+        Thread thread = new Thread(myRunnable);
+//        thread.start();
 
-            System.out.println(day);
-
-            switch(day) {
-                case SUNDAY,SATURDAY-> System.out.println("It is a weekend");
-                case MONDAY,
-                     TUESDAY,
-                     WEDNESDAY,
-                     THURSDAY,
-                     FRIDAY-> System.out.println("It is a weekend");
-
-            }
+//        System.out.println("You have 10 seconds to enter your name");
+//        System.out.print("Enter your name:");
+//        String name = sc.nextLine();
+//        System.out.println("Hello "+name);
+        sc.close();
+        Thread thread1 = new Thread(new MultiThreading("Ping"));
+        Thread thread2 = new Thread(new MultiThreading("Pong"));
+        System.out.println("Game Start");
+        thread1.start();
+        thread2.start();
+        try{
+            thread1.join();
+            thread2.join();
+        } catch (InterruptedException e) {
+            System.out.println("Main Thread was interrupted");
         }
-            catch(IllegalArgumentException e){
-                System.out.println("Day does not exist");
-        }
-        catch(Exception e){
-            System.out.println("Something went wrong");
-        }
+        System.out.println("Game Over");
     }
 }
