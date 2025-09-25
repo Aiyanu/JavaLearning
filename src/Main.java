@@ -1,50 +1,35 @@
-import javax.sound.sampled.*;
-import java.io.File;
-import java.io.FileNotFoundException;
-import java.io.IOException;
-import java.util.Scanner;
+import java.time.Instant;
+import java.time.LocalDate;
+import java.time.LocalDateTime;
+import java.time.LocalTime;
+import java.time.format.DateTimeFormatter;
 
 public class Main {
     public static void main(String[] args) {
-        String filePath = "src\\Music.wav";
-        File file = new File(filePath);
-        try(Scanner sc = new Scanner(System.in);AudioInputStream audioInputStream = AudioSystem.getAudioInputStream(file);){
+        //(LocalDate,LocalTime,LocalDateTime,UTC timestamped)
+        LocalDate date = LocalDate.now();
+        System.out.println(date);
+        LocalTime time = LocalTime.now();
+        System.out.println(time);
+        LocalDateTime datetime = LocalDateTime.now();
+        System.out.println(datetime);
+        Instant instant = Instant.now();
+        System.out.println(instant);
 
-            Clip clip = AudioSystem.getClip();
-            clip.open(audioInputStream);
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy HH:mm:ss");
+        System.out.println(datetime.format(formatter));
 
-            String response="";
-            while(!response.equals("Q")){
-                System.out.println("P = Play");
-                System.out.println("S = Stop");
-                System.out.println("R = Reset");
-                System.out.println("Q = Quit");
-                System.out.print("Enter your choice: ");
+        LocalDateTime datetime1 = LocalDateTime.of(2025,1,1,12,0,0);
+        LocalDateTime datetime2 = LocalDateTime.of(2025,1,1,0,0,0);
 
-                response=sc.nextLine().toUpperCase();
-
-                switch(response){
-                    case "P"->clip.start();
-                    case "S"->clip.stop();
-                    case "R"->clip.setMicrosecondPosition(0);
-                    case "Q"->clip.close();
-                    default -> System.out.println("Invalid choice.");
-                }
-            }
+        if(datetime1.isBefore(datetime2)){
+            System.out.println(datetime1+" is earlier than "+datetime2);
         }
-        catch(FileNotFoundException e){
-            System.out.println("Could not locate audio file");
+        else if(datetime1.isAfter(datetime2)){
+            System.out.println(datetime1+" is later than "+datetime2);
         }
-        catch(UnsupportedAudioFileException e){
-            System.out.println("Audio file is not supported");
-        }
-        catch(LineUnavailableException e){
-            System.out.println("Unable to access audio resource");
-        }
-        catch (IOException e) {
-            System.out.println("Something went wrong");;
-        } finally {
-            System.out.println("Byeeee");
+        else if(datetime1.isEqual(datetime2)){
+            System.out.println(datetime1+" is equal to "+datetime2);
         }
     }
 }
