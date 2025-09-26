@@ -1,29 +1,31 @@
+import java.time.LocalTime;
+import java.time.format.DateTimeFormatter;
+import java.time.format.DateTimeParseException;
 import java.util.*;
 
 public class Main {
     public static void main(String[] args) {
+        //Java Alarm Clock
         Scanner sc = new Scanner(System.in);
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("HH:mm:ss");
+        LocalTime alarmTime=null;
+        String filePath = "src\\alarm-sound.wav";
 
-        MyRunnable myRunnable = new MyRunnable();
-        Thread thread = new Thread(myRunnable);
-//        thread.start();
+        while(alarmTime==null){
+            try {
+                System.out.print("Enter Alarm Time (HH:MM:SS): ");
+                String inputTime = sc.nextLine();
 
-//        System.out.println("You have 10 seconds to enter your name");
-//        System.out.print("Enter your name:");
-//        String name = sc.nextLine();
-//        System.out.println("Hello "+name);
-        sc.close();
-        Thread thread1 = new Thread(new MultiThreading("Ping"));
-        Thread thread2 = new Thread(new MultiThreading("Pong"));
-        System.out.println("Game Start");
-        thread1.start();
-        thread2.start();
-        try{
-            thread1.join();
-            thread2.join();
-        } catch (InterruptedException e) {
-            System.out.println("Main Thread was interrupted");
+                alarmTime = LocalTime.parse(inputTime, formatter);
+                System.out.println("Alarm set for " + alarmTime);
+
+            } catch (DateTimeParseException e) {
+                System.out.println("Invalid Format. Please use HH:MM:SS");
+            }
         }
-        System.out.println("Game Over");
+
+        AlarmClock alarmClock = new AlarmClock(alarmTime,filePath,sc);
+        Thread alarmThread = new Thread(alarmClock);
+        alarmThread.start();
     }
 }
